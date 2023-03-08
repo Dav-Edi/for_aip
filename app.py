@@ -65,7 +65,7 @@ class MainWindow(QMainWindow):
         os.environ['STABILITY_HOST'] = 'grpc.stability.ai:443'
 
 
-        os.environ['STABILITY_KEY'] = 'sk-e4e7uYDTTRXFnTEHWnECZHPWjQ8CaMPWzh7mCNlfOOfPEjk2'
+        os.environ['STABILITY_KEY'] = 'your-api-key'
 
         stability_api = client.StabilityInference(
             key=os.environ['STABILITY_KEY'],

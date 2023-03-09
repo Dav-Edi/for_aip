@@ -5,7 +5,7 @@ dz
 скачать пакеты для питона через пип
 pip install stability-sdk pyqt6 
 
-получить АПИ ключ
+получить АПИ ключ и вставить в скрипте на 71 строке 
 https://beta.dreamstudio.ai/membership?tab=apiKeys
 
 запустить скрипт app.py и вводить запрос на английском и нажать либо Enter либо кнопку generate

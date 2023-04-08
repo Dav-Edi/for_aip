@@ -1,0 +1,274 @@
+Option Explicit
+
+Sub one()
+    Dim A(15), Arow, num As Integer, res, nech, flag, i, j
+    flag = False
+    Randomize
+    For i = 0 To 15
+        num = Rnd * 25
+        Arow = Arow & num & "; "
+        A(i) = num
+        If (num = 2) Then
+            flag = True
+        End If
+    Next i
+    If (flag = True) Then
+        For i = 0 To 15
+            If (A(i) Mod 2 = 0) Then
+                res = res + 1
+            End If
+        Next i
+        MsgBox (Arow & vbNewLine & "Â ìàññèâå åñòü 2, ïîýòîìó êîë-âî 0 = " & res)
+    Else
+        For i = 0 To 15
+            If (A(i) Mod 2 <> 0) Then
+                res = res + A(i)
+                nech = nech + 1
+            End If
+        Next i
+        MsgBox (Arow & vbNewLine & "Â ìàññèâå íåò 2, ïîýòîìó ñð.àðèô. = " & res / nech)
+    End If
+End Sub
+
+Sub two()
+    Dim A(15), Arow, num As Integer, arif, geom, arifres, geomres, flag, i, j
+    flag = False
+    Randomize
+    For i = 0 To 15
+        num = Rnd * 25
+        Arow = Arow & num & "; "
+        A(i) = num
+        arif = arif + num
+        geom = arif * num
+    Next i
+    arif = arif
+    geom = arif ^ (1 / 16)
+    If (Abs(arif - geom) Mod 2 = 0) Then
+        For i = 0 To 15 Step 2
+            A(i) = 0
+            arifres = arifres & A(i) & "; " & A(i + 1) & "; "
+        Next i
+        MsgBox (Arow & vbNewLine & "Ðàçíîñòü ìåæäó ñð.àðèô. è ñð.ãåîì. êðàòíà 2, ïîýòîìó " & arifres)
+    Else
+        For i = 0 To 15
+            geomres = geomres + A(i) ^ 2
+        Next i
+        MsgBox (Arow & vbNewLine & "Ðàçíîñòü ìåæäó ñð.àðèô. è ñð.ãåîì. íå êðàòíà 2, ïîýòîìó ñóììà êâàäðàòîâ âñåõ ýëåìåíòîâ = " & geomres)
+    End If
+End Sub
+
+Sub three()
+    Dim A(15), Arow, mx, arif, num As Integer, i
+    Randomize
+    mx = A(0)
+    For i = 0 To 15
+        num = Rnd * 25
+        A(i) = num
+        arif = arif + num
+        Arow = Arow & num & "; "
+    Next i
+    arif = arif / 16
+    For i = 0 To 15
+        If (mx < Abs(arif - A(i))) Then
+            mx = Abs(arif - A(i))
+        End If
+    Next i
+    MsgBox (Arow & vbNewLine & "Ñð.àðèô. = " & arif & vbNewLine & "Ìàêñ îòêëîíåíèå îò ñð.àðèô. = " & mx)
+End Sub
+
+Sub four()
+    Dim A(12), Arow, Arowafter, arif, num As Integer, i
+    Randomize
+    For i = 0 To 12
+        num = Rnd * 25
+        A(i) = num
+        arif = arif + num
+        Arow = Arow & num & "; "
+    Next i
+    arif = arif / 13
+    For i = 0 To 12
+        If (A(i) < arif) Then
+            A(i) = 0
+        Else
+            A(i) = 1
+        End If
+        Arowafter = Arowafter & A(i) & "; "
+    Next i
+    MsgBox ("Ñð.àðèô. = " & arif & vbNewLine & Arow & vbNewLine & "after: " & vbNewLine & Arowafter)
+End Sub
+
+Sub five()
+    Dim B(8), C(8), numB, numC, rowB, rowC, rowB1, i
+    Randomize
+    For i = 0 To 8
+        numB = Int(Rnd * 25)
+        B(i) = numB
+        rowB = rowB & numB & "; "
+        numC = Int(Rnd * 25)
+        C(i) = numC
+        rowC = rowC & numC & "; "
+    Next i
+    For i = 0 To 8
+        If (C(i) Mod 5 = 0) Then
+            B(i) = B(i) * 5
+        Else
+            B(i) = 0
+        End If
+        rowB1 = rowB1 & B(i) & "; "
+    Next i
+    MsgBox ("B:" & vbNewLine & "before: " & rowB & vbNewLine & "after: " & rowB1 & vbNewLine & "C:" & vbNewLine & "before: " & rowC & vbNewLine & "after: " & rowC)
+End Sub
+
+Sub six()
+    Dim A(15), Arow, Arow1, num As Integer, res, kol, i, flag
+    flag = False
+    Randomize
+    For i = 0 To 15
+        num = Rnd * 15
+        Arow = Arow & num & "; "
+        A(i) = num
+        If (num >= 3 And num <= 11) Then
+            kol = kol + 1
+        End If
+    Next i
+    If (kol < 4) Then
+        For i = 0 To 15
+            If (A(i) Mod kol = 0) Then
+                res = res + A(i)
+            End If
+        Next i
+        MsgBox (Arow & vbNewLine & "Êîë-âî ýëåìåíòîâ èç [3; 11] = " & kol & vbNewLine & "Êîë-âî ýëåìåíòîâ èç [3; 11] < 4, ïîýòîìó ñóììà ýëåì-îâ êðàòíûõ ýòîìó êîë-âó = " & res)
+    Else
+        For i = 0 To 15
+            If (A(i) Mod kol <= 2) Then
+                A(i) = A(i) ^ 2
+            End If
+            Arow1 = Arow1 & A(i) & "; "
+        Next i
+        MsgBox ("Êîë-âî ýëåìåíòîâ èç [3; 11] >= 4; " & "êîë-âî = " & kol & ", ïîýòîìó " & vbNewLine & "before: " & Arow & vbNewLine & "after: " & Arow1)
+    End If
+End Sub
+
+
+
+Sub seven()
+    Dim A(15), Arow, Arow1, mx, geom, num As Integer, i, arif
+    Randomize
+    mx = A(0)
+    For i = 0 To 15
+        num = Rnd * 25
+        A(i) = num
+        geom = geom * num
+        Arow = Arow & num & "; "
+    Next i
+    geom = geom ^ (1 / 16)
+    For i = 0 To 15
+        If (mx < Abs(arif - A(i))) Then
+            mx = Abs(arif - A(i))
+        End If
+    Next i
+    If (mx Mod 2 = 0) Then
+        For i = 1 To 15
+            If (i Mod 3 = 0) Then
+                A(i - 1) = mx
+            End If
+            Arow1 = Arow1 & A(i - 1) & "; "
+        Next i
+        MsgBox ("Ìàêñ îòêëîíåíèå = " & mx & "; êðàòíî 2, ïîýòîìó: " & vbNewLine & "before: " & Arow & vbNewLine & "after: " & Arow1)
+    Else
+        For i = 1 To 15
+            If (i Mod 5 = 0) Then
+                A(i - 1) = A(i - 1) ^ 2
+            End If
+            Arow1 = Arow1 & A(i - 1) & "; "
+        Next i
+        MsgBox ("Ìàêñ îòêëîíåíèå = " & mx & "; íå êðàòíî 2, ïîýòîìó: " & vbNewLine & "before: " & Arow & vbNewLine & "after: " & Arow1)
+    End If
+End Sub
+
+Sub eight():
+    Dim C(10), Crow, num As Integer, i, j, Crowafter As String
+    Randomize
+    For i = 0 To 10
+        num = (Rnd * 50 - 25)
+        C(i) = num
+        Crow = Crow & num & "; "
+    Next i
+    MsgBox (Crow)
+    Crowafter = ""
+    Crowafter = Crowafter & C(0)
+    For j = 1 To 10
+        If (C(j) > 0 And C(j - 1) > 0) Or (C(j) < 0 And C(j - 1) < 0) Then
+            Crowafter = Crowafter + " P "
+        End If
+        Crowafter = Crowafter & C(j) + " "
+    Next j
+    MsgBox (Crowafter)
+End Sub
+
+Sub nine()
+    Dim K(8), Krow, iL, iR, i1, i2, im, tmp, num
+    Randomize
+    iL = LBound(K)
+    iR = UBound(K)
+    'set vaslues of list
+    For i1 = 0 To 8
+        num = Int(Rnd * 50 - 25)
+        K(i1) = num
+        Krow = Krow & num & ";"
+    Next i1
+    MsgBox ("before sort" & Chr(13) & Krow)
+    i1 = 0
+    Krow = ""
+    iL = LBound(K)
+    iR = UBound(K)
+    For i1 = iL To iR
+        im = i1
+        For i2 = i1 To iR
+            If K(i2) > K(im) Then im = i2
+        Next
+            If im <> i1 Then
+                tmp = K(i1)
+                K(i1) = K(im)
+                K(im) = tmp
+                Krow = Krow & K(i1) & ";"
+            End If
+        Next
+    MsgBox ("after sort" & Chr(13) & Krow)
+End Sub
+
+Sub ten()
+    Dim B(15), Brow1, Brow2, i, j, ch1, ch2, kol, sos
+    Randomize
+    For i = 0 To 15
+        j = Int(Rnd * 50)
+        B(i) = j
+        Brow1 = Brow1 & j & " ; "
+    Next i
+    For i = 0 To 15
+        If B(i) Mod 2 = 0 Then
+            ch1 = B(i)
+            For j = i + 1 To 15
+                If B(j) Mod 2 = 0 Then
+                    B(i) = B(j)
+                    B(j) = ch1
+                    j = 16
+                    i = 16
+                End If
+            Next j
+        End If
+    Next i
+    kol = 0
+    For i = 1 To 15
+        If B(i - 1) Mod 2 = 0 And B(i) Mod 2 = 0 Then
+            kol = kol + 1
+        End If
+    Next i
+    For i = 1 To 15 Step 2
+        B(i) = kol
+    Next i
+    For i = 0 To 15
+        Brow2 = Brow2 & B(i) & " ; "
+    Next i
+    MsgBox (Brow1 & Chr(13) & Brow2)
+End Sub

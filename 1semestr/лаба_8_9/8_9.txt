@@ -1,0 +1,54 @@
+Rem Attribute VBA_ModuleType=VBADocumentModule
+Option VBASupport 1
+Sub one()
+    Dim i, j, arif, geom, a as object, min
+    Range("A1:Z100").Clear 'Очистка листа'
+
+    'задание3'
+    Range("A11") = "Среднее арифметическое"
+    Range("D11").Formula = "=AVERAGE(A1:C10)"
+    Range("A12") = "Среднее геометрическое"
+    Range("D12").Formula = "=GEOMEAN(A1:E10)"
+    
+    for each a in Range("A1:E10")
+    	'задание2'
+    	a.value = Int(Rnd * 100)
+    	
+    	'задание4'
+    	if a.value mod 5=0 then
+    		with a.font
+    			.bold = true
+    			.colorindex = 3
+    			.size = 20
+    		end with
+    	end if
+    next
+    
+    'задание5'
+    for each a in Range("A1:E10")
+	    if a.value = WorksheetFunction.Min(Range("A1:E10")) or a.value = WorksheetFunction.Max(Range("A1:E10")) then 
+	    	with a.font
+	    		.colorindex = 5
+	    	end with
+		end if
+	next
+	Range("A1:E10").copy Range("G1")
+    for each a in range("G1:K10"):
+	    if a.value = WorksheetFunction.Min(Range("A1:E10")) then 
+	    	a.value = WorksheetFunction.Max(Range("A1:E10"))
+	    elseif a.value = WorksheetFunction.Max(Range("A1:E10")) then 
+	    	a.value = WorksheetFunction.Min(Range("A1:E10"))
+	    end if
+	next
+End Sub
+
+Sub six()
+    Dim form As New UserForm1
+    form.Show
+End Sub
+
+sub seven()
+	Dim form As New UserForm1
+    form.Show
+end sub
+
